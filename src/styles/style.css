@@ -1,6 +1,7 @@
 @import '../fonts/lobster/style.css';
 @import '../fonts/open-sans/style.css';
 
+
 /* global */
 body {
 	font-family: 'Open Sans';
@@ -37,6 +38,15 @@ a {
 	width: 100%;
 	background: rgba(0,0,0,.5);
 }
+
+
+
+/* icon-icon */
+svg {
+	width: 24px;
+	height: 24px;
+}
+
 
 
 /* app-bar */
