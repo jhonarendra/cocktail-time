@@ -1,10 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cocktail Time</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Cocktail Time | Cari cocktail terbaik untuk anda</title>
+    <meta content="Cocktail Time. Cari cocktail terbaik untuk anda" name="description">
+    <meta content="Putu Jhonarendra" name="keywords">
+    <meta content="index, follow" name="robots">
+    <meta content="Indonesia" name="geo.placename">
+    <meta content="Putu Jhonarendra" name="Author">
 </head>
 <body>
+	<div id="home" style="display: none">
+		<header>
+			<!-- <app-bar></app-bar> -->
+			<a class="btnBrowse">Browse</a>
+		</header>
+		<main>
+
+		</main>
+	</div>
+
+	<div id="search" style="display: none">
+		<header>
+			<!-- <app-bar></app-bar> -->
+
+			<div id="app-bar">
+				<div class="brand">
+					<img src="/src/img/logo.png"> <h1>Cocktail Time</h1>
+				</div>
+			</div>
+			<search-bar></search-bar>
+			<filter-bar></filter-bar>
+		</header>
+		<main>
+			<ct-list></ct-list>
+		</main>
+		<a class="btnHome">Home</a>
+	</div>
+	
+	<div id="show" style="display: none">
+		<header>
+			<div class="bg-img">
+				<div class="back"></div>
+			</div>
+			<div class="header-inner">
+				<div>
+					<div>
+						<img>
+					</div>
+					<div>
+						<h1>Morita</h1>
+						<p>Ingredients1, Ingredients1, Ingredients1</p>
+						<span class="alcoholic">Alcoholic</span>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div>
+				<h3>Ingredients</h3>
+			</div>
+			<div>
+				<h3>Glass</h3>
+			</div>
+			<div>
+				<h3>Instruction</h3>
+			</div>
+		</main>
+	</div>
+
+	<footer>
+		Copyright 2021 Cocktail Time
+	</footer>
 </body>
 </html>
