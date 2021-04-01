@@ -1,8 +1,12 @@
+@import '../fonts/lobster/style.css';
+@import '../fonts/open-sans/style.css';
+
 /* global */
-* {
-	margin:0;
-	padding: 0;
-	box-sizing: border-box;
+body {
+	font-family: 'Open Sans';
+}
+h1 {
+	font-family: 'Lobster Regular';
 }
 
 /* app-bar */

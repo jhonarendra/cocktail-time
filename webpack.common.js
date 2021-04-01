@@ -19,6 +19,14 @@ module.exports = {
                         loader: "css-loader"
                     }
                 ]
+            },
+            {
+                test: /\.woff$/,
+                use: [
+                    {
+                        loader: "url-loader"
+                    }
+                ]
             }
         ]
     },
