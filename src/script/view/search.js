@@ -1,4 +1,4 @@
-import searchView from './searchView.html'
+import searchView from './search.html'
 
 const search = {
 	html: searchView,
