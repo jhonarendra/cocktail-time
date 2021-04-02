@@ -38,7 +38,20 @@ a {
 	width: 100%;
 	background: rgba(0,0,0,.5);
 }
-
+h3.section-title{
+	position: relative;
+	color: #343434;
+	text-align: center;
+	font-family: 'Lobster Regular';
+}
+h3.section-title:before{
+	position: absolute;
+	content: ' ';
+	width: 50px;
+	height: 3px;
+	top:-10px;
+	background: #E6B31E;
+}
 
 
 /* icon-icon */
@@ -203,6 +216,7 @@ svg.svg-ct-gold{
 #cocktail-area {
 	padding-top: 50px
 }
+
 
 .cocktail-item {
 	position: relative;
