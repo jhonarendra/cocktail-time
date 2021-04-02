@@ -55,15 +55,18 @@
 			<div id="search-bar" class="bg-ct-dark">
 				<div class="container">
 					<input type="text" class="form-control">
+					<svg class="magnify svg-ct-gold"><path></path></svg>
 				</div>
 			</div>
 			<div id="filter-bar" class="bg-ct-gray">
 				<div class="filter">
 					<div class="container">
-						<span class="filter-item">Glass <svg class="chevron-down" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg></span>
-						<span class="filter-item">
-							Glass
-						</span>
+						<div id="filter-category-active">
+							<span class="filter-item">Glass <svg class="chevron-down"><path></path></svg></span>
+						</div>
+						<div id="filter-ingredients-active">
+							<span class="filter-item">Glass <svg class="chevron-down"><path></path></svg></span>
+						</div>
 					</div>
 				</div>
 				<div class="filter-detail">
@@ -71,41 +74,74 @@
 						<div class="row">
 							<div class="col-md-3">
 								<span>Category</span>
-								<ul>
-									<li>Test</li>
-									<li>Test</li>
-									<li>Test</li>
-									<li>Test</li>
+								<ul id="filter-category" class="mt-2">
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-marked mr-1 svg-success"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
 								</ul>
 							</div>
 							<div class="col-md-3">
 								<span>Ingredients</span>
-								<ul>
-									<li>Test</li>
-									<li>Test</li>
-									<li>Test</li>
-									<li>Test</li>
+								<ul id="filter-ingredients" class="mt-2">
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-marked mr-1 svg-success"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
 								</ul>
 							</div>
 							<div class="col-md-3">
 								<span>Glass</span>
-								<ul>
-									<li>Test</li>
-									<li>Test</li>
-									<li>Test</li>
-									<li>Test</li>
+								<ul class="mt-2">
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-marked mr-1 svg-success"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
 								</ul>
 							</div>
 							<div class="col-md-3">
 								<span>Alcohol</span>
-								<ul>
-									<li>Test</li>
-									<li>Test</li>
-									<li>Test</li>
-									<li>Test</li>
+								<ul class="mt-2">
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-marked mr-1 svg-success"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
+									<li>
+										<svg class="checkbox-blank mr-1"><path></path></svg>Test
+									</li>
 								</ul>
 							</div>
 						</div>
+						<div class="toggle-filter"><svg class="close"><path></path></svg></div>
 					</div>
 				</div>
 			</div>
