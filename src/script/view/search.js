@@ -123,7 +123,7 @@ const search = {
 	        	search.el.titleCocktailArea.innerHTML = 'You Might Like'
 	        	// initial data
 	        	try {
-	        		// search.data.cocktail = await Api.get()
+	        		search.data.cocktail = await Api.get()
 	        		search.method.renderCocktailItem()
 	        	} catch(err) {
 	        		console.log(err)
@@ -185,7 +185,7 @@ const search = {
 	    				el.innerHTML += `
 	    					<div class="col-md-4 p-0">
 	    						<div class="cocktail-item" data-id="${e.idDrink}">
-	    							<img src="${e.strDrinkThumb}">
+	    							<img src="${e.strDrinkThumb}/preview">
 	    							<div class="backdrop"></div>
 	    							<h3>${e.strDrink}</h3>
 	    						</div>
@@ -208,6 +208,7 @@ const search = {
 	    },
 	    setFilterCategory: (cat, act) => {
 	        if(act === 'add'){
+	        	search.data.filter.category = []
 	            search.data.filter.category.push(cat)
 	        } else if(act === 'remove'){
 	            let index = search.data.filter.category.indexOf(cat)
@@ -217,6 +218,7 @@ const search = {
 	    },
 	    setFilterIngredients: (cat, act) => {
 	        if(act === 'add'){
+	        	search.data.filter.ingredients = []
 	            search.data.filter.ingredients.push(cat)
 	        } else if(act === 'remove'){
 	            let index = search.data.filter.ingredients.indexOf(cat)
@@ -226,6 +228,7 @@ const search = {
 	    },
 	    setFilterGlass: (cat, act) => {
 	        if(act === 'add'){
+	        	search.data.filter.glass = []
 	            search.data.filter.glass.push(cat)
 	        } else if(act === 'remove'){
 	            let index = search.data.filter.glass.indexOf(cat)
@@ -235,6 +238,7 @@ const search = {
 	    },
 	    setFilterAlcohol: (cat, act) => {
 	        if(act === 'add'){
+	        	search.data.filter.alcohol = []
 	            search.data.filter.alcohol.push(cat)
 	        } else if(act === 'remove'){
 	            let index = search.data.filter.alcohol.indexOf(cat)

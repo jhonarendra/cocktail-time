@@ -128,28 +128,37 @@ class Api {
         })
     }
     static filter(data) {
-        let promises = []
-        if(data.category.length > 0){
-            data.category.forEach(e => {
-                let promise = fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${e}`)
-                    .then(res => res.json())
-                promises.push(promise)
-            })
+        let https = `https://www.thecocktaildb.com/api/json/v1/1/filter.php`
+        if(data.category[0]){
+            https += `?c=${data.category[0]}`
+        }
+        if(data.ingredients[0]){
+            if(data.category[0]){
+                https += `&i=${data.ingredients[0]}`
+            } else {
+                https += `?i=${data.ingredients[0]}`
+            }
             
         }
-        return Promise.all([
-            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
-            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
-            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
-            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
-            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
-            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json())
-        ]).then(res => {
-            let data = []
-            res.forEach(e => {
-                data.push(e.drinks[0])
-            })
-            return data
+        if(data.glass[0]){
+            if(!data.category[0] && !data.ingredients[0]){
+                https += `?g=${data.glass[0]}`
+            } else {
+                https += `&g=${data.glass[0]}`
+            }
+        }
+        if(data.alcohol[0]){
+            if(!data.category[0] && !data.ingredients[0] && !data.glass[0]){
+                https += `?a=${data.alcohol[0]}`
+            } else {
+                https += `&a=${data.alcohol[0]}`
+            }
+        }
+        return fetch(https)
+        .then(res => {
+            return Promise.resolve(res.json())
+        }).then(res => {
+            return res.drinks
         })
     }
     static getCategory() {
