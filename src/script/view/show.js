@@ -49,34 +49,42 @@ const show = {
 				changePage.method.setPage('search')
 			})
 		},
-		showData: () => {
-			show.data.show = Api.show(show.data.id)
+		showData: async() => {
+			try{
+				let data = await Api.show(show.data.id)
+				console.log(data)
+				show.data.show = data
+				let e = show.data.show
 
-			let e = show.data.show
-			console.log(e)
 
+				show.el.bgImage.style.backgroundImage = `url('${e.strDrinkThumb}')`
+				show.el.ctHeaderIcon.setAttribute('src', e.strDrinkThumb+'/preview')
 
-			show.el.bgImage.style.backgroundImage = `url('${e.strDrinkThumb}')`
-			show.el.ctHeaderIcon.setAttribute('src', e.strDrinkThumb+'/preview')
+				show.el.ctName.innerHTML = e.strDrink
+				show.el.ctIngredient.innerHTML = ''
+				show.el.ingredients.innerHTML = ''
+				e.ingredients.forEach(e => {
+					show.el.ctIngredient.innerHTML += e.strIngredient + ', '
+					show.el.ingredients.innerHTML += `
+					<li class="p-3">
+						<img class="ing-icon" src="${e.strThumb}">
+						<span class="ing-name">${e.strIngredient}</span>
+						<span class="ing-measure">${(e.measure == null) ? '' : e.measure}</span>
+					</li>
+					`
+				})
+				show.el.ctAlcohol.innerHTML = e.strAlcoholic
 
-			show.el.ctName.innerHTML = e.strDrink
-			show.el.ctIngredient.innerHTML = ''
-			show.el.ingredients.innerHTML = ''
-			e.ingredients.forEach(e => {
-				show.el.ctIngredient.innerHTML += e.strIngredient + ', '
-				show.el.ingredients.innerHTML += `
-				<li class="p-3">
-					<img class="ing-icon" src="${e.strThumb}">
-					<span class="ing-name">${e.strIngredient}</span>
-					<span class="ing-measure">${(e.measure == null) ? '' : e.measure}</span>
-				</li>
-				`
-			})
-			show.el.ctAlcohol.innerHTML = e.strAlcoholic
+				show.el.glass.innerHTML = e.strGlass
+				show.el.imgGlass.setAttribute('src', e.strDrinkThumb+'/preview')
+				show.el.instruction.innerHTML = e.strInstructions
+			} catch(err) {
+				console.log(err)
+			}
+			
+			// show.data.show = Api.show(show.data.id)
 
-			show.el.glass.innerHTML = e.strGlass
-			show.el.imgGlass.setAttribute('src', e.strDrinkThumb+'/preview')
-			show.el.instruction.innerHTML = e.strInstructions
+			
 			
 
 		}
