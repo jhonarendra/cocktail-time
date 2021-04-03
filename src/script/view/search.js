@@ -161,10 +161,10 @@ const search = {
 	    	search.data.cocktail.forEach(e => {
 	    		el.innerHTML += `
 	    			<div class="col-md-4 p-0">
-	    				<div class="cocktail-item" data-id="${e.id}">
-	    					<img src="/src/img/sample/test2.jpg">
+	    				<div class="cocktail-item" data-id="${e.idDrink}">
+	    					<img src="${e.strDrinkThumb}">
 	    					<div class="backdrop"></div>
-	    					<h3>${e.name}</h3>
+	    					<h3>${e.strDrink}</h3>
 	    				</div>
 	    			</div>
 	    		`
