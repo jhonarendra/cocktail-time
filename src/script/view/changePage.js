@@ -4,7 +4,7 @@ import home from './home.js'
 
 const changePage = {
 	data: {
-	    page: 'search'
+	    page: 'home'
 	},
 	el: {
         app: document.querySelector("#app")
