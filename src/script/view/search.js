@@ -1,4 +1,6 @@
 import searchView from './search.html'
+import Api from '../data/api.js'
+import changePage from './changePage.js'
 
 const search = {
 	html: searchView,
@@ -14,28 +16,31 @@ const search = {
 	        glass: [],
 	        alcohol: [],
 	    },
-	    search: ''
+	    search: '',
+	    cocktail: []
 	},
 	el: {
-		searchForm: document.querySelector("#search-form"),
-		searchInput: document.querySelector("#search-input"),
-		filterDetail: document.querySelector(".filter-detail"),
-		toggleFilter: document.querySelector(".toggle-filter"),
-		filterCategory: document.querySelector("#filter-category"),
-		filterIngredients: document.querySelector("#filter-ingredients"),
-		filterGlass: document.querySelector("#filter-glass"),
-		filterAlcohol: document.querySelector("#filter-alcohol"),
-		filterCategoryActive: document.querySelector("#filter-category-active"),
-		filterIngredientsActive: document.querySelector("#filter-ingredients-active"),
-		filterGlassActive: document.querySelector("#filter-glass-active"),
-		filterAlcoholActive: document.querySelector("#filter-alcohol-active"),
-		aFilter: document.querySelector("#a-filter"),
-		titleCocktailArea: document.querySelector("#title-cocktail-area")
+		searchForm: '',
+		searchInput: '',
+		filterDetail: '',
+		toggleFilter: '',
+		filterCategory: '',
+		filterIngredients: '',
+		filterGlass: '',
+		filterAlcohol: '',
+		filterCategoryActive: '',
+		filterIngredientsActive: '',
+		filterGlassActive:  '',
+		filterAlcoholActive:  '',
+		aFilter:  '',
+		titleCocktailArea: '',
+		cockTailItemArea: ''
 	},
 	method: {
 	    mounted: () => {
 	        search.method.trigger()
 	        search.method.renderFilter()
+	        search.method.filter()
 	    },
 	    trigger: () => {
 
@@ -53,6 +58,7 @@ const search = {
 	    	search.el.filterAlcoholActive = document.querySelector("#filter-alcohol-active"),
 	    	search.el.aFilter = document.querySelector("#a-filter"),
 	    	search.el.titleCocktailArea = document.querySelector("#title-cocktail-area")
+	    	search.el.cockTailItemArea = document.querySelector("#cocktail-item-area")
 
 	        search.el.toggleFilter.addEventListener('click', () => {
 	            search.method.toggleFilter()
@@ -79,15 +85,61 @@ const search = {
 	        }
 	    },
 	    filter: () => {
-	        if(search.data.search === '' && search.data.filter.category.length === 0 && search.data.filter.ingredients.length === 0 && search.data.filter.glass.length === 0 && search.data.filter.alcohol.length === 0){
-	            search.el.titleCocktailArea.innerHTML = 'You Might Like'
-	        } else {
-	            search.el.titleCocktailArea.innerHTML = 'Result From Search and Filter'
+	    	let isSearch = true
+	    	let isFilter = true
+	        if(search.data.search === ''){
+	        	isSearch = false
 	        }
+	        if(search.data.filter.category.length === 0 && search.data.filter.ingredients.length === 0 && search.data.filter.glass.length === 0 && search.data.filter.alcohol.length === 0){
+	        	isFilter = false
+	        }
+
+
+	        if(isSearch === false && isFilter === false){
+	        	search.el.titleCocktailArea.innerHTML = 'You Might Like'
+	        	// initial data
+	        	search.data.cocktail = Api.get()
+	        	search.method.renderCocktailItem()
+
+	        } else {
+	        	search.el.titleCocktailArea.innerHTML = 'Result From Search and Filter'
+	        	
+	        	// filter data
+
+	        }
+
+
+	        
 	        if(search.data.toggleFilter){
 	            search.data.toggleFilter = false
 	            search.el.filterDetail.classList.remove('show')
 	        }
+
+
+
+
+	    },
+	    renderCocktailItem: () => {
+	    	let el = search.el.cockTailItemArea
+	    	el.innerHTML = ''
+	    	search.data.cocktail.forEach(e => {
+	    		el.innerHTML += `
+	    			<div class="col-md-4 p-0">
+	    				<div class="cocktail-item" data-id="${e.id}">
+	    					<img src="/src/img/sample/test2.jpg">
+	    					<div class="backdrop"></div>
+	    					<h3>${e.name}</h3>
+	    				</div>
+	    			</div>
+	    		`
+	    	})
+	    	let cockTailItem = document.querySelectorAll('.cocktail-item')
+	    	cockTailItem.forEach(e => e.addEventListener('click', () => {
+	    	    let id = e.getAttribute('data-id')
+	    	    console.log(id)
+	    	    changePage.method.setPageWithParam('show', {id: id})
+	    	}))
+
 	    },
 	    setFilterCategory: (cat, act) => {
 	        if(act === 'add'){
