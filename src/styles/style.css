@@ -212,12 +212,12 @@ svg.svg-ct-gold{
 .list-filter {
 	cursor: pointer;
 }
-#a-filter {
-	color: #343434 !important;
+#a-filter, #a-reset-filter {
+	color: #212121 !important;
 	cursor: pointer;
 }
-#a-filter:hover {
-	text-decoration: underline;
+#a-filter:hover, #a-reset-filter:hover {
+	text-decoration: none;
 }
 
 

@@ -35,6 +35,7 @@ const search = {
 		filterGlassActive:  '',
 		filterAlcoholActive:  '',
 		aFilter:  '',
+		aResetFilter: '',
 		titleCocktailArea: '',
 		cockTailItemArea: '',
 		filterItemDefault: ''
@@ -62,6 +63,7 @@ const search = {
 	    	search.el.filterGlassActive = document.querySelector("#filter-glass-active"),
 	    	search.el.filterAlcoholActive = document.querySelector("#filter-alcohol-active"),
 	    	search.el.aFilter = document.querySelector("#a-filter"),
+	    	search.el.aResetFilter = document.querySelector("#a-reset-filter"),
 	    	search.el.titleCocktailArea = document.querySelector("#title-cocktail-area")
 	    	search.el.cockTailItemArea = document.querySelector("#cocktail-item-area")
 	    	search.el.filterItemDefault = document.querySelector('.filter-item-default')
@@ -80,6 +82,10 @@ const search = {
 	        
 	        search.el.aFilter.addEventListener('click', () => {
 	            search.method.filter()
+	        })
+
+	        search.el.aResetFilter.addEventListener('click', () => {
+	            search.method.resetFilter()
 	        })
 
 	        search.el.searchForm.addEventListener('submit', e => {
@@ -112,29 +118,42 @@ const search = {
 	        }
 
 
-	        if(isSearch === false && isFilter === false){
+	        if(!isSearch && !isFilter){
 	        	search.el.titleCocktailArea.innerHTML = 'You Might Like'
 	        	// initial data
 	        	search.data.cocktail = Api.get()
 	        	search.method.renderCocktailItem()
 
-	        } else {
-	        	search.el.titleCocktailArea.innerHTML = 'Result From Search and Filter'
+	        } else if(isSearch || isFilter){
+	        	if(isSearch){
+	        		search.el.titleCocktailArea.innerHTML = 'Result From Keyword "'+search.data.search+'" '
+	        		search.method.resetSearch()
+	        		search.method.resetFilter()
+	        	} else if(isFilter){
+	        		search.el.titleCocktailArea.innerHTML = 'Result From Filter'
+	        		search.method.resetSearch()
+
+	        	}
+	        	
 	        	
 	        	// filter data
 
 	        }
-
-
-	        
 	        if(search.data.toggleFilter){
 	            search.data.toggleFilter = false
 	            search.el.filterDetail.classList.remove('show')
 	        }
-
-
-
-
+	    },
+	    resetSearch: () => {
+	    	search.data.search = ''
+	    	search.el.searchInput.value = ''
+	    },
+	    resetFilter: () => {
+	    	search.data.filter.category = []
+	    	search.data.filter.ingredients = []
+	    	search.data.filter.glass = []
+	    	search.data.filter.alcohol = []
+	    	search.method.renderFilter()
 	    },
 	    renderCocktailItem: () => {
 	    	let el = search.el.cockTailItemArea
