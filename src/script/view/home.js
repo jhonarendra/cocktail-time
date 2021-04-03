@@ -11,7 +11,8 @@ const home = {
 		id: ''
 	},
 	el: {
-		appBar: ''
+		appBar: '',
+		searchBar: ''
 	},
 	method: {
 		mounted: () => {
@@ -22,6 +23,7 @@ const home = {
 		},
 		trigger: () => {
 			home.el.appBar = document.querySelector('app-bar')
+			home.el.searchBar = document.querySelector('search-bar')
 
 			home.el.appBar.clickBrand = () => {
 				changePage.method.setPage('home')
@@ -29,6 +31,13 @@ const home = {
 
 			home.el.appBar.clickBrowse = () => {
 				changePage.method.setPage('search')
+			}
+			home.el.searchBar.setValue = ''
+			home.el.searchBar.onSubmit = e => {
+			    e.preventDefault()
+			    let key = home.el.searchBar.getValue
+			    changePage.method.setPageWithParam('search', {search: key})
+			    search.method.filter()
 			}
 
 			// home.el.btnBrowse.forEach(e => e.addEventListener('click', () => {

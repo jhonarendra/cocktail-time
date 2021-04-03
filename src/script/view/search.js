@@ -23,8 +23,6 @@ const search = {
 	el: {
 		appBar: '',
 		searchBar: '',
-		// searchForm: '',
-		// searchInput: '',
 		filterDetail: '',
 		toggleFilter: '',
 		filterCategory: '',
@@ -47,12 +45,13 @@ const search = {
 	        search.method.renderFilter()
 	        search.method.filter()
 	    },
+	    prop: (param) => {
+	    	search.data.search = param.key
+	    },
 	    trigger: () => {
 
 	    	search.el.appBar = document.querySelector("app-bar")
 	    	search.el.searchBar = document.querySelector("search-bar")
-	    	// search.el.searchForm = document.querySelector("#search-form"),
-	    	// search.el.searchInput = document.querySelector("#search-input"),
 	    	search.el.filterDetail = document.querySelector(".filter-detail"),
 	    	search.el.toggleFilter = document.querySelector(".toggle-filter"),
 	    	search.el.filterCategory = document.querySelector("#filter-category"),
@@ -108,6 +107,9 @@ const search = {
 	            search.el.filterDetail.classList.add('show')
 	            search.data.toggleFilter = true
 	        }
+	    },
+	    search: () => {
+
 	    },
 	    filter: async() => {
 	    	let isSearch = true
@@ -168,7 +170,6 @@ const search = {
 	    },
 	    resetSearch: () => {
 	    	search.data.search = ''
-	    	// search.el.searchInput.value = ''
 	    	search.el.searchBar.setValue = ''
 	    },
 	    resetFilter: () => {

@@ -118,7 +118,7 @@ class SearchBar extends HTMLElement {
 				
 				
 			</style>
-			<div id="search-bar" class="bg-ct-dark">
+			<div id="search-bar">
 				<div class="container">
 					<form id="search-form">
 						<input id="search-input" type="text" class="form-control" placeholder="Type and hit enter">
