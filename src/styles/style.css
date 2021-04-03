@@ -173,7 +173,7 @@ svg.svg-ct-gold{
 	width: 100%;
 	height: 100vh;
 	top:0;
-	padding-top: 100px;
+	padding-top: 30vh;
 }
 
 
@@ -358,6 +358,14 @@ ul.ing-list {
 }
 .ing-name {
 	font-weight: bold
+}
+
+/* intro */
+#intro .img-icon {
+	text-align: right;
+}
+.intro-content h3.section-title{
+	text-align: left;
 }
 
 /* footer */
