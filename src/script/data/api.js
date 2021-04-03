@@ -2,7 +2,64 @@ import cocktail from './cocktail.js'
 
 class Api {
     static get() {
-        return cocktail
+        // Promise.all([
+        //     fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`),
+        //     fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`),
+        //     fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`),
+        //     fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`),
+        //     fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`),
+        //     fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`),
+        //     fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+        // ]).then(res => {
+        //     console.log(res[0])
+        //     // let data = []
+        //     // data.push(rand1.drinks)
+        //     // data.push(rand2.drinks)
+        //     // data.push(rand3.drinks)
+        //     // data.push(rand4.drinks)
+        //     // data.push(rand5.drinks)
+        //     // data.push(rand6.drinks)
+        //     // data.push(rand7.drinks)
+        //     // console.log(data)
+        //     // return data
+        // }).catch((err) => {
+        //     console.error(err)
+        // })
+
+        // return fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+        // .then(res => {
+        //     return Promise.resolve(res.json())
+        // })
+
+        return Promise.all([
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json())
+        ]).then(res => {
+            let data = []
+            res.forEach(e => {
+                data.push(e.drinks[0])
+            })
+            return data
+        })
+
+
+
+        // return fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+        // .then(res => {
+        //     return res.json()
+        // })
+        // .then(resJson => {
+        //     // console.log(resJson)
+        //     if(resJson.drinks){
+        //         return Promise.resolve(resJson.drinks)
+        //     } else {
+        //         return Promise.reject(`${key} is not found`)
+        //     }
+        // })
     }
     static show(id) {
         let show = {}

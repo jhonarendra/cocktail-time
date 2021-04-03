@@ -107,7 +107,7 @@ const search = {
 	            search.data.toggleFilter = true
 	        }
 	    },
-	    filter: () => {
+	    filter: async() => {
 	    	let isSearch = true
 	    	let isFilter = true
 	        if(search.data.search === ''){
@@ -121,8 +121,14 @@ const search = {
 	        if(!isSearch && !isFilter){
 	        	search.el.titleCocktailArea.innerHTML = 'You Might Like'
 	        	// initial data
-	        	search.data.cocktail = Api.get()
-	        	search.method.renderCocktailItem()
+	        	try {
+	        		search.data.cocktail = await Api.get()
+	        		search.method.renderCocktailItem()
+	        	} catch(err) {
+	        		console.log(err)
+	        	}
+	        	
+	        	
 
 	        } else if(isSearch || isFilter){
 	        	if(isSearch){
