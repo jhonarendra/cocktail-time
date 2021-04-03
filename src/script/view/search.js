@@ -122,21 +122,33 @@ const search = {
 	        	search.el.titleCocktailArea.innerHTML = 'You Might Like'
 	        	// initial data
 	        	try {
-	        		search.data.cocktail = await Api.get()
+	        		// search.data.cocktail = await Api.get()
 	        		search.method.renderCocktailItem()
 	        	} catch(err) {
 	        		console.log(err)
 	        	}
-	        	
-	        	
-
 	        } else if(isSearch || isFilter){
 	        	if(isSearch){
 	        		search.el.titleCocktailArea.innerHTML = 'Result From Keyword "'+search.data.search+'" '
+	        		try {
+	        			// search.data.cocktail = await Api.search(search.data.search)
+	        			let data = await Api.search(search.data.search)
+	        			console.log(data)
+	        			search.data.cocktail = data
+	        			search.method.renderCocktailItem()
+	        		} catch(err) {
+	        			console.log(err)
+	        		}
 	        		search.method.resetSearch()
 	        		search.method.resetFilter()
 	        	} else if(isFilter){
 	        		search.el.titleCocktailArea.innerHTML = 'Result From Filter'
+	        		try {
+	        			search.data.cocktail = await Api.filter(search.data.filter)
+	        			search.method.renderCocktailItem()
+	        		} catch(err) {
+	        			console.log(err)
+	        		}
 	        		search.method.resetSearch()
 
 	        	}
@@ -164,22 +176,31 @@ const search = {
 	    renderCocktailItem: () => {
 	    	let el = search.el.cockTailItemArea
 	    	el.innerHTML = ''
-	    	search.data.cocktail.forEach(e => {
-	    		el.innerHTML += `
-	    			<div class="col-md-4 p-0">
-	    				<div class="cocktail-item" data-id="${e.idDrink}">
-	    					<img src="${e.strDrinkThumb}">
-	    					<div class="backdrop"></div>
-	    					<h3>${e.strDrink}</h3>
-	    				</div>
-	    			</div>
-	    		`
-	    	})
-	    	let cockTailItem = document.querySelectorAll('.cocktail-item')
-	    	cockTailItem.forEach(e => e.addEventListener('click', () => {
-	    	    let id = e.getAttribute('data-id')
-	    	    changePage.method.setPageWithParam('show', {id: id})
-	    	}))
+	    	if(search.data.cocktail){
+	    		if(search.data.cocktail.length > 0){
+	    			search.data.cocktail.forEach(e => {
+	    				el.innerHTML += `
+	    					<div class="col-md-4 p-0">
+	    						<div class="cocktail-item" data-id="${e.idDrink}">
+	    							<img src="${e.strDrinkThumb}">
+	    							<div class="backdrop"></div>
+	    							<h3>${e.strDrink}</h3>
+	    						</div>
+	    					</div>
+	    				`
+	    			})
+	    			let cockTailItem = document.querySelectorAll('.cocktail-item')
+	    			cockTailItem.forEach(e => e.addEventListener('click', () => {
+	    			    let id = e.getAttribute('data-id')
+	    			    changePage.method.setPageWithParam('show', {id: id})
+	    			}))
+	    		} else {
+	    			el.innerHTML = `<div class="col-12 text-center">No data</div>`
+	    		}
+	    	} else {
+	    		el.innerHTML = `<div class="col-12 text-center">No data</div>`
+	    	}
+	    	
 
 	    },
 	    setFilterCategory: (cat, act) => {
