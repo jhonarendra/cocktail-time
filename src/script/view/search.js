@@ -46,7 +46,8 @@ const search = {
 	        search.method.filter()
 	    },
 	    prop: (param) => {
-	    	search.data.search = param.key
+	    	search.data.search = param.search
+	    	search.method.mounted()
 	    },
 	    trigger: () => {
 
