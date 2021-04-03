@@ -127,5 +127,62 @@ class Api {
             return res.drinks
         })
     }
+    static filter(data) {
+        let promises = []
+        if(data.category.length > 0){
+            data.category.forEach(e => {
+                let promise = fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${e}`)
+                    .then(res => res.json())
+                promises.push(promise)
+            })
+            
+        }
+        return Promise.all([
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()),
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json())
+        ]).then(res => {
+            let data = []
+            res.forEach(e => {
+                data.push(e.drinks[0])
+            })
+            return data
+        })
+    }
+    static getCategory() {
+        return fetch(`https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`)
+        .then(res => {
+            return Promise.resolve(res.json())
+        }).then(res => {
+            return res.drinks
+        })
+    }
+    static getGlass() {
+        return fetch(`https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list`)
+        .then(res => {
+            return Promise.resolve(res.json())
+        }).then(res => {
+            return res.drinks
+        })
+    }
+    static getIngredients() {
+        return fetch(`https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list`)
+        .then(res => {
+            return Promise.resolve(res.json())
+        }).then(res => {
+            return res.drinks
+        })
+    }
+    static getAlcoholic() {
+        return fetch(`https://www.thecocktaildb.com/api/json/v1/1/list.php?a=list`)
+        .then(res => {
+            return Promise.resolve(res.json())
+        }).then(res => {
+            return res.drinks
+        })
+    }
 }
 export default Api

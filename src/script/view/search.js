@@ -6,10 +6,10 @@ const search = {
 	html: searchView,
 	data: {
 	    toggleFilter: false,
-	    category: ["Test", "Test2", "Test3"],
-	    ingredients: ["ingredients", "ingredientsw", "ingredients33"],
-	    glass: ["glass", "glass2", "glass3"],
-	    alcohol: ["alcohol3", "alcoholdd", "alcohol dd"],
+	    category: [],
+	    ingredients: [],
+	    glass: [],
+	    alcohol: [],
 	    filter: {
 	        category: [],
 	        ingredients: [],
@@ -17,7 +17,8 @@ const search = {
 	        alcohol: [],
 	    },
 	    search: '',
-	    cocktail: []
+	    cocktail: [],
+	    isFilterLoaded: false,
 	},
 	el: {
 		appBrand: '',
@@ -144,7 +145,9 @@ const search = {
 	        	} else if(isFilter){
 	        		search.el.titleCocktailArea.innerHTML = 'Result From Filter'
 	        		try {
-	        			search.data.cocktail = await Api.filter(search.data.filter)
+	        			let data = await Api.filter(search.data.filter)
+	        			console.log(data)
+	        			search.data.cocktail = data
 	        			search.method.renderCocktailItem()
 	        		} catch(err) {
 	        			console.log(err)
@@ -239,12 +242,36 @@ const search = {
 	        }
 	        search.method.renderFilter()
 	    },
-	    renderFilter: () => {
-	        search.method.renderFilterActive()
-	        search.method.renderFilterCategory()
-	        search.method.renderFilterIngredients()
-	        search.method.renderFilterGlass()
-	        search.method.renderFilterAlcohol()
+	    renderFilter: async() => {
+	    	if(!search.data.isFilterLoaded){
+	    		try {
+	    			let data1 = await Api.getCategory()
+	    			data1.forEach(e => {
+	    				search.data.category.push(e.strCategory)
+	    			})
+	    			let data2 = await Api.getGlass()
+	    			data2.forEach(e => {
+	    				search.data.glass.push(e.strGlass)
+	    			})
+	    			let data3 = await Api.getIngredients()
+	    			data3.forEach(e => {
+	    				search.data.ingredients.push(e.strIngredient1)
+	    			})
+	    			let data4 = await Api.getAlcoholic()
+	    			data4.forEach(e => {
+	    				search.data.alcohol.push(e.strAlcoholic)
+	    			})
+	    			search.data.isFilterLoaded = true
+	    		} catch(err) {
+
+	    		}
+	    	}
+	    	search.method.renderFilterActive()
+	    	search.method.renderFilterCategory()
+	    	search.method.renderFilterIngredients()
+	    	search.method.renderFilterGlass()
+	    	search.method.renderFilterAlcohol()
+	        
 	    },
 	    renderFilterActive: () => {
 	        let f = search.data.filter
