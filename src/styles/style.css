@@ -103,7 +103,7 @@ svg.svg-ct-gold{
 
 /* app-bar */
 
-#app-bar {
+/*#app-bar {
 	color: #E6B31E;
 	height: 60px;
 }
@@ -132,7 +132,7 @@ svg.svg-ct-gold{
 }
 #app-bar .menu a {
 	line-height: 56px;
-}
+}*/
 
 
 /* nav-bar */
@@ -195,8 +195,20 @@ svg.svg-ct-gold{
 	right: 0
 }
 
+/* try */
+.try-icon {
+	transform: scale(10);
+	margin:100px;
+}
+.try-icon-area {
+	text-align: right;
+}
+#try h3.section-title {
+	text-align: left;
+}
+
 /* search-bar */
-#search-bar {
+/*#search-bar {
 	padding: 10px 0;
 }
 #search-bar .container {
@@ -211,7 +223,7 @@ svg.svg-ct-gold{
 	position: absolute;
 	top:7px;
 	left: 25px;
-}
+}*/
 
 /* filter-bar */
 #filter-bar .filter {

@@ -21,10 +21,10 @@ const search = {
 	    isFilterLoaded: false,
 	},
 	el: {
-		appBrand: '',
-		btnBrowse: '',
-		searchForm: '',
-		searchInput: '',
+		appBar: '',
+		searchBar: '',
+		// searchForm: '',
+		// searchInput: '',
 		filterDetail: '',
 		toggleFilter: '',
 		filterCategory: '',
@@ -49,10 +49,10 @@ const search = {
 	    },
 	    trigger: () => {
 
-	    	search.el.appBrand = document.querySelector(".brand")
-	    	search.el.btnBrowse = document.querySelectorAll('.btn-browse')
-	    	search.el.searchForm = document.querySelector("#search-form"),
-	    	search.el.searchInput = document.querySelector("#search-input"),
+	    	search.el.appBar = document.querySelector("app-bar")
+	    	search.el.searchBar = document.querySelector("search-bar")
+	    	// search.el.searchForm = document.querySelector("#search-form"),
+	    	// search.el.searchInput = document.querySelector("#search-input"),
 	    	search.el.filterDetail = document.querySelector(".filter-detail"),
 	    	search.el.toggleFilter = document.querySelector(".toggle-filter"),
 	    	search.el.filterCategory = document.querySelector("#filter-category"),
@@ -69,13 +69,19 @@ const search = {
 	    	search.el.cockTailItemArea = document.querySelector("#cocktail-item-area")
 	    	search.el.filterItemDefault = document.querySelector('.filter-item-default')
 
-	    	search.el.appBrand.addEventListener('click', () => {
-	    	    changePage.method.setPage('home')
-	    	})
+	    	search.el.appBar.clickBrand = () => {
+	    		changePage.method.setPage('home')
+	    	}
 
-	    	search.el.btnBrowse.forEach(e => e.addEventListener('click', () => {
-				changePage.method.setPage('search')
-			}))
+	    	search.el.appBar.clickBrowse = () => {
+	    		changePage.method.setPage('search')
+	    	}
+	    	search.el.searchBar.setValue = ''
+	    	search.el.searchBar.onSubmit = e => {
+	    	    e.preventDefault()
+	    	    search.data.search = search.el.searchBar.getValue
+	    	    search.method.filter()
+	    	}
 
 	        search.el.toggleFilter.addEventListener('click', () => {
 	            search.method.toggleFilter()
@@ -89,11 +95,6 @@ const search = {
 	            search.method.resetFilter()
 	        })
 
-	        search.el.searchForm.addEventListener('submit', e => {
-	            e.preventDefault()
-	            search.data.search = search.el.searchInput.value
-	            search.method.filter()
-	        })
 	        search.el.filterItemDefault.addEventListener('click', () => {
 	            search.method.toggleFilter()
 	        })
@@ -167,7 +168,8 @@ const search = {
 	    },
 	    resetSearch: () => {
 	    	search.data.search = ''
-	    	search.el.searchInput.value = ''
+	    	// search.el.searchInput.value = ''
+	    	search.el.searchBar.setValue = ''
 	    },
 	    resetFilter: () => {
 	    	search.data.filter.category = []

@@ -11,7 +11,7 @@ const home = {
 		id: ''
 	},
 	el: {
-		btnBrowse: ''
+		appBar: ''
 	},
 	method: {
 		mounted: () => {
@@ -21,11 +21,19 @@ const home = {
 
 		},
 		trigger: () => {
-			home.el.btnBrowse = document.querySelectorAll('.btn-browse')
+			home.el.appBar = document.querySelector('app-bar')
 
-			home.el.btnBrowse.forEach(e => e.addEventListener('click', () => {
+			home.el.appBar.clickBrand = () => {
+				changePage.method.setPage('home')
+			}
+
+			home.el.appBar.clickBrowse = () => {
 				changePage.method.setPage('search')
-			}))
+			}
+
+			// home.el.btnBrowse.forEach(e => e.addEventListener('click', () => {
+			// 	changePage.method.setPage('search')
+			// }))
 		}
 	}
 }
