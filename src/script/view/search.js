@@ -172,7 +172,6 @@ const search = {
 	    	let cockTailItem = document.querySelectorAll('.cocktail-item')
 	    	cockTailItem.forEach(e => e.addEventListener('click', () => {
 	    	    let id = e.getAttribute('data-id')
-	    	    console.log(id)
 	    	    changePage.method.setPageWithParam('show', {id: id})
 	    	}))
 

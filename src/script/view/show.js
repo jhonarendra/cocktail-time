@@ -5,17 +5,23 @@ import changePage from './changePage.js'
 const show = {
 	html: showView,
 	data: {
-		id: ''
+		id: '',
+		show: ''
 	},
 	prop: {
 		id: ''
 	},
 	el: {
-		btnBackHeader: ''
+		btnBackHeader: '',
+		ctName: '',
+		ctIngredient: '',
+		ctAlcohol: '',
+		
 	},
 	method: {
 		mounted: () => {
 			show.data.id = show.prop.id
+			show.method.showData()
 		    show.method.trigger()
 		},
 		prop: param => {
@@ -24,10 +30,16 @@ const show = {
 		trigger: () => {
 			show.el.btnBackHeader = document.querySelector('#btn-back-header')
 
-
 			show.el.btnBackHeader.addEventListener('click', () => {
 				changePage.method.setPage('search')
 			})
+		},
+		showData: () => {
+			show.data.show = Api.show(show.data.id)
+
+			let e = show.data.show
+
+
 		}
 	}
 }
