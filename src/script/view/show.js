@@ -20,7 +20,8 @@ const show = {
 		ctAlcohol: '',
 		ingredients: '',
 		glass: '',
-		instruction: '',
+		imgGlass: '',
+		instruction: ''
 
 	},
 	method: {
@@ -41,6 +42,7 @@ const show = {
 			show.el.ctAlcohol = document.querySelector('#ct-alcohol')
 			show.el.ingredients = document.querySelector('#ingredients')
 			show.el.glass = document.querySelector('#glass')
+			show.el.imgGlass = document.querySelector('#img-glass')
 			show.el.instruction = document.querySelector('#instruction')
 
 			show.el.btnBackHeader.addEventListener('click', () => {
@@ -55,17 +57,17 @@ const show = {
 
 
 			show.el.bgImage.style.backgroundImage = `url('${e.strDrinkThumb}')`
-			show.el.ctHeaderIcon.setAttribute('src', e.strDrinkThumb)
+			show.el.ctHeaderIcon.setAttribute('src', e.strDrinkThumb+'/preview')
 
 			show.el.ctName.innerHTML = e.strDrink
 			show.el.ctIngredient.innerHTML = ''
 			show.el.ingredients.innerHTML = ''
 			e.ingredients.forEach(e => {
-				show.el.ctIngredient.innerHTML += e.name + ', '
+				show.el.ctIngredient.innerHTML += e.strIngredient + ', '
 				show.el.ingredients.innerHTML += `
 				<li class="p-3">
-					<img class="ing-icon" src="/src/img/sample/test2.jpg">
-					<span class="ing-name">${e.name}</span>
+					<img class="ing-icon" src="${e.strThumb}">
+					<span class="ing-name">${e.strIngredient}</span>
 					<span class="ing-measure">${(e.measure == null) ? '' : e.measure}</span>
 				</li>
 				`
@@ -73,6 +75,7 @@ const show = {
 			show.el.ctAlcohol.innerHTML = e.strAlcoholic
 
 			show.el.glass.innerHTML = e.strGlass
+			show.el.imgGlass.setAttribute('src', e.strDrinkThumb+'/preview')
 			show.el.instruction.innerHTML = e.strInstructions
 			
 

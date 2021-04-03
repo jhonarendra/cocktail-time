@@ -14,50 +14,58 @@ class Api {
         // formating ingredient n measure
         let arrIng = []
         if(show.strIngredient1){
-            arrIng.push({name: show.strIngredient1, measure: show.strMeasure1})
+            // nanti disini search ingredient1, dapetin detail ingredient:
+            // https://www.thecocktaildb.com/api/json/v1/1/search.php?i=vodka
+
+            // image: https://www.thecocktaildb.com/images/ingredients/Elderflower%20cordial-Small.png
+            arrIng.push({
+                idIngredient: '1',
+                strIngredient: show.strIngredient1,
+                strDescription: 'test',
+                strThumb: 'https://www.thecocktaildb.com/images/ingredients/'+show.strIngredient1+'-Small.png',
+                strType: 'Spirit',
+                strAlcohol: 'Yes',
+                strABV: '40',
+                measure: show.strMeasure1
+            })
         }
         if(show.strIngredient2){
-            arrIng.push({name: show.strIngredient2, measure: show.strMeasure2})
+            arrIng.push({
+                idIngredient: '1',
+                strIngredient: show.strIngredient2,
+                strDescription: 'test',
+                strThumb: 'https://www.thecocktaildb.com/images/ingredients/'+show.strIngredient2+'-Small.png',
+                strType: 'Spirit',
+                strAlcohol: 'Yes',
+                strABV: '40',
+                measure: show.strMeasure2
+            })
         }
         if(show.strIngredient3){
-            arrIng.push({name: show.strIngredient3, measure: show.strMeasure3})
+            arrIng.push({
+                idIngredient: '1',
+                strIngredient: show.strIngredient3,
+                strDescription: 'test',
+                strThumb: 'https://www.thecocktaildb.com/images/ingredients/'+show.strIngredien3+'-Small.png',
+                strType: 'Spirit',
+                strAlcohol: 'Yes',
+                strABV: '40',
+                measure: show.strMeasure3
+            })
         }
         if(show.strIngredient4){
-            arrIng.push({name: show.strIngredient4, measure: show.strMeasure4})
+            arrIng.push({
+                idIngredient: '1',
+                strIngredient: show.strIngredient4,
+                strDescription: 'test',
+                strThumb: 'https://www.thecocktaildb.com/images/ingredients/'+show.strIngredient4+'-Small.png',
+                strType: 'Spirit',
+                strAlcohol: 'Yes',
+                strABV: '40',
+                measure: show.strMeasure4
+            })
         }
-        if(show.strIngredient5){
-            arrIng.push({name: show.strIngredient5, measure: show.strMeasure5})
-        }
-        if(show.strIngredient6){
-            arrIng.push({name: show.strIngredient6, measure: show.strMeasure6})
-        }
-        if(show.strIngredient7){
-            arrIng.push({name: show.strIngredient7, measure: show.strMeasure7})
-        }
-        if(show.strIngredient8){
-            arrIng.push({name: show.strIngredient8, measure: show.strMeasure8})
-        }
-        if(show.strIngredient9){
-            arrIng.push({name: show.strIngredient9, measure: show.strMeasure9})
-        }
-        if(show.strIngredient10){
-            arrIng.push({name: show.strIngredient10, measure: show.strMeasure10})
-        }
-        if(show.strIngredient11){
-            arrIng.push({name: show.strIngredient11, measure: show.strMeasure11})
-        }
-        if(show.strIngredient12){
-            arrIng.push({name: show.strIngredient12, measure: show.strMeasure12})
-        }
-        if(show.strIngredient13){
-            arrIng.push({name: show.strIngredient13, measure: show.strMeasure13})
-        }
-        if(show.strIngredient14){
-            arrIng.push({name: show.strIngredient14, measure: show.strMeasure14})
-        }
-        if(show.strIngredient15){
-            arrIng.push({name: show.strIngredient15, measure: show.strMeasure15})
-        }
+        // ... Dan lainnya, nanti pake api aja
         show.ingredients = arrIng
         return show
     }
