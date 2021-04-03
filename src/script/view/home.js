@@ -14,6 +14,7 @@ const home = {
 	el: {
 		appBar: '',
 		searchBar: '',
+		jumbotronBg: '',
 		sampleContent: ''
 	},
 	method: {
@@ -27,6 +28,7 @@ const home = {
 		trigger: () => {
 			home.el.appBar = document.querySelector('app-bar')
 			home.el.searchBar = document.querySelectorAll('search-bar')
+			home.el.jumbotronBg = document.querySelector('.j-bg-image')
 			home.el.sampleContent = document.querySelector('#sample-content')
 
 			home.el.appBar.clickBrand = () => {
@@ -63,6 +65,9 @@ const home = {
 			`
 			if(home.data.cocktail.length > 0){
 				home.data.cocktail.forEach((e, i) => {
+					if(i == 0){
+						home.el.jumbotronBg.style.backgroundImage = `url('${e.strDrinkThumb}')`
+					}
 					el.innerHTML += `
 						<div class="col-md-3 p-0">
 							<div class="cocktail-item" data-id="${e.idDrink}">
