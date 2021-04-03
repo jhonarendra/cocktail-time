@@ -11,7 +11,7 @@ const show = {
 		id: ''
 	},
 	el: {
-
+		btnBackHeader: ''
 	},
 	method: {
 		mounted: () => {
@@ -22,7 +22,12 @@ const show = {
 			show.prop.id = param.id
 		},
 		trigger: () => {
+			show.el.btnBackHeader = document.querySelector('#btn-back-header')
 
+
+			show.el.btnBackHeader.addEventListener('click', () => {
+				changePage.method.setPage('search')
+			})
 		}
 	}
 }

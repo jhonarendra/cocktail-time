@@ -20,6 +20,8 @@ const search = {
 	    cocktail: []
 	},
 	el: {
+		appBrand: '',
+		btnBrowse: '',
 		searchForm: '',
 		searchInput: '',
 		filterDetail: '',
@@ -34,7 +36,8 @@ const search = {
 		filterAlcoholActive:  '',
 		aFilter:  '',
 		titleCocktailArea: '',
-		cockTailItemArea: ''
+		cockTailItemArea: '',
+		filterItemDefault: ''
 	},
 	method: {
 	    mounted: () => {
@@ -44,6 +47,8 @@ const search = {
 	    },
 	    trigger: () => {
 
+	    	search.el.appBrand = document.querySelector(".brand")
+	    	search.el.btnBrowse = document.querySelectorAll('.btn-browse')
 	    	search.el.searchForm = document.querySelector("#search-form"),
 	    	search.el.searchInput = document.querySelector("#search-input"),
 	    	search.el.filterDetail = document.querySelector(".filter-detail"),
@@ -59,6 +64,15 @@ const search = {
 	    	search.el.aFilter = document.querySelector("#a-filter"),
 	    	search.el.titleCocktailArea = document.querySelector("#title-cocktail-area")
 	    	search.el.cockTailItemArea = document.querySelector("#cocktail-item-area")
+	    	search.el.filterItemDefault = document.querySelector('.filter-item-default')
+
+	    	search.el.appBrand.addEventListener('click', () => {
+	    	    changePage.method.setPage('home')
+	    	})
+
+	    	search.el.btnBrowse.forEach(e => e.addEventListener('click', () => {
+				changePage.method.setPage('search')
+			}))
 
 	        search.el.toggleFilter.addEventListener('click', () => {
 	            search.method.toggleFilter()
@@ -72,6 +86,9 @@ const search = {
 	            e.preventDefault()
 	            search.data.search = search.el.searchInput.value
 	            search.method.filter()
+	        })
+	        search.el.filterItemDefault.addEventListener('click', () => {
+	            search.method.toggleFilter()
 	        })
 
 	    },

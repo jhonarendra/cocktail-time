@@ -1,5 +1,6 @@
 import search from './search.js'
 import show from './show.js'
+import home from './home.js'
 
 const changePage = {
 	data: {
@@ -12,6 +13,8 @@ const changePage = {
     	run: () => {
     		switch(changePage.data.page){
     		    case 'home':
+                    app.innerHTML = home.html
+                    home.method.mounted()
     		        break
 
     		    case 'search':
@@ -31,10 +34,14 @@ const changePage = {
     	runWithParam: (params) => {
     		switch(changePage.data.page){
     		    case 'home':
+                    app.innerHTML = home.html
+                    home.method.prop(params)
+                    home.method.mounted()
     		        break
 
     		    case 'search':
     		        app.innerHTML = search.html
+                    search.method.prop(params)
     		        search.method.mounted()
     		        break
     		    

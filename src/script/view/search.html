@@ -2,11 +2,11 @@
 	<header>
 		<div id="app-bar" class="bg-ct-dark">
 			<div class="container">
-				<div class="brand">
+				<div class="brand cursor-pointer">
 					<img src="/src/img/logo.png"> <h1>Cocktail Time</h1>
 				</div>
 				<div class="menu">
-					<a>Browse</a>
+					<a class="cursor-pointer btn-browse">Browse</a>
 				</div>
 			</div>
 		</div>
@@ -22,18 +22,22 @@
 		<div id="filter-bar" class="bg-ct-gray">
 			<div class="filter">
 				<div class="container">
-					<div id="filter-category-active">
-						<span class="filter-item">Glass <svg class="chevron-down"><path></path></svg></span>
+					<div style="line-height: 40px; white-space: nowrap;overflow: auto">
+						<span class="filter-item filter-item-default">Show Filter <svg class="chevron-down"><path></path></svg></span>
+						<span id="filter-category-active">
+							<span class="filter-item">Glass <svg class="chevron-down"><path></path></svg></span>
+						</span>
+						<span id="filter-ingredients-active">
+							<span class="filter-item">Glass <svg class="chevron-down"><path></path></svg></span>
+						</span>
+						<span id="filter-glass-active">
+							<span class="filter-item">Glass <svg class="chevron-down"><path></path></svg></span>
+						</span>
+						<span id="filter-alcohol-active">
+							<span class="filter-item">Glass <svg class="chevron-down"><path></path></svg></span>
+						</span>
 					</div>
-					<div id="filter-ingredients-active">
-						<span class="filter-item">Glass <svg class="chevron-down"><path></path></svg></span>
-					</div>
-					<div id="filter-glass-active">
-						<span class="filter-item">Glass <svg class="chevron-down"><path></path></svg></span>
-					</div>
-					<div id="filter-alcohol-active">
-						<span class="filter-item">Glass <svg class="chevron-down"><path></path></svg></span>
-					</div>
+					
 				</div>
 			</div>
 			<div class="filter-detail">
