@@ -34,18 +34,68 @@ class Api {
             return Promise.resolve(res.json())
         }).then(res => {
             data = res.drinks[0]
-            return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${res.drinks[0].strIngredient1}`)
-        }).then(res => {
-            return Promise.resolve(res.json())
-        }).then(res => {
-            let ingredient = res.ingredients[0]
-            ingredient.measure = data.strMeasure1
-            ingredient.strThumb = 'https://www.thecocktaildb.com/images/ingredients/'+data.strIngredient1+'-Small.png'
-            
-            data.ingredients = [ ingredient ]
 
-            return data
+            let promises = []
+            if(data.strIngredient1){
+                let promise1 = fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${data.strIngredient1}`)
+                    .then(res => res.json())
+                promises.push(promise1)
+            }
+            if(data.strIngredient2){
+                let promise2 = fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${data.strIngredient2}`)
+                    .then(res => res.json())
+                promises.push(promise2)
+            }
+
+            return Promise.all(promises).then(res => {
+                let ingredients = []
+
+                res.forEach(e => {
+                    let ing = e.ingredients[0]
+                    ing.measure = data.strMeasure1
+                    ing.strThumb = 'https://www.thecocktaildb.com/images/ingredients/'+data.strIngredient1+'-Small.png'
+                    ingredients.push(ing)
+                })
+
+                data.ingredients = ingredients
+
+                return data
+
+            })
+
         })
+
+
+        // ini yg sudah mau
+        // let data = ''
+        // return fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+        // .then(res => {
+        //     return Promise.resolve(res.json())
+        // }).then(res => {
+        //     data = res.drinks[0]
+
+        //     let promise = []
+        //     if(data.strIngredient1){
+        //         promise.push(
+        //             fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${res.drinks[0].strIngredient1}`)
+        //             .then(res => res.json())
+        //         )
+        //     }
+
+        //     Promise.all()
+
+        //     return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${res.drinks[0].strIngredient1}`)
+        // }).then(res => {
+        //     return Promise.resolve(res.json())
+        // }).then(res => {
+        //     let ingredient = res.ingredients[0]
+        //     ingredient.measure = data.strMeasure1
+        //     ingredient.strThumb = 'https://www.thecocktaildb.com/images/ingredients/'+data.strIngredient1+'-Small.png'
+            
+        //     data.ingredients = [ ingredient ]
+
+        //     return data
+        // })
 
 
         // .then(res => {
