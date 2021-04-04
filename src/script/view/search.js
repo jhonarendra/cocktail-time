@@ -136,9 +136,7 @@ const search = {
 	        	if(isSearch){
 	        		search.el.titleCocktailArea.innerHTML = 'Result From Keyword "'+search.data.search+'" '
 	        		try {
-	        			// search.data.cocktail = await Api.search(search.data.search)
 	        			let data = await Api.search(search.data.search)
-	        			console.log(data)
 	        			search.data.cocktail = data
 	        			search.method.renderCocktailItem()
 	        		} catch(err) {
@@ -150,7 +148,6 @@ const search = {
 	        		search.el.titleCocktailArea.innerHTML = 'Result From Filter'
 	        		try {
 	        			let data = await Api.filter(search.data.filter)
-	        			console.log(data)
 	        			search.data.cocktail = data
 	        			search.method.renderCocktailItem()
 	        		} catch(err) {

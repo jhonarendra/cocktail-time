@@ -52,7 +52,6 @@ const show = {
 		showData: async() => {
 			try{
 				let data = await Api.show(show.data.id)
-				console.log(data)
 				show.data.show = data
 				let e = show.data.show
 
@@ -81,12 +80,6 @@ const show = {
 			} catch(err) {
 				console.log(err)
 			}
-			
-			// show.data.show = Api.show(show.data.id)
-
-			
-			
-
 		}
 	}
 }
