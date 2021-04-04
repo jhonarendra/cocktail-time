@@ -1,7 +1,7 @@
 class AppBar extends HTMLElement {
 
 	constructor(){
-		super();
+		super()
 		this.shadowDOM = this.attachShadow({
 			mode: 'open'
 		})

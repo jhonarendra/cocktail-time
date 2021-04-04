@@ -170,7 +170,11 @@ const search = {
 	    	search.data.filter.ingredients = []
 	    	search.data.filter.glass = []
 	    	search.data.filter.alcohol = []
-	    	search.method.renderFilter()
+	    	search.method.renderFilterActive()
+	    	search.method.renderFilterCategory()
+	    	search.method.renderFilterIngredients()
+	    	search.method.renderFilterGlass()
+	    	search.method.renderFilterAlcohol()
 	    },
 	    renderCocktailItem: () => {
 	    	let el = search.el.cockTailItemArea

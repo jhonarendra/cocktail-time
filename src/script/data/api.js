@@ -1,4 +1,4 @@
-import cocktail from './cocktail.js'
+// import cocktail from './cocktail.js'
 
 class Api {
     static get() {
