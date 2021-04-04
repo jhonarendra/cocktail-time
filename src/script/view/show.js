@@ -16,6 +16,7 @@ const show = {
 		ctHeaderIcon: '',
 		btnBackHeader: '',
 		ctName: '',
+		ctCategory: '',
 		ctIngredient: '',
 		ctAlcohol: '',
 		ingredients: '',
@@ -39,6 +40,7 @@ const show = {
 			show.el.ctHeaderIcon = document.querySelector('.ct-header-icon')
 			show.el.btnBackHeader = document.querySelector('#btn-back-header')
 			show.el.ctName = document.querySelector('#ct-name')
+			show.el.ctCategory = document.querySelector('#ct-category')
 			show.el.ctIngredient = document.querySelector('#ct-ingredient')
 			show.el.ctAlcohol = document.querySelector('#ct-alcohol')
 			show.el.ingredients = document.querySelector('#ingredients')
@@ -53,6 +55,7 @@ const show = {
 		showData: async() => {
 			try{
 				let data = await Api.show(show.data.id)
+				console.log(data)
 				show.data.show = data
 				let e = show.data.show
 
@@ -61,19 +64,27 @@ const show = {
 				show.el.ctHeaderIcon.setAttribute('src', e.strDrinkThumb+'/preview')
 
 				show.el.ctName.innerHTML = e.strDrink
+				show.el.ctCategory.innerHTML = e.strCategory
 				show.el.ctIngredient.innerHTML = ''
 				show.el.ingredients.innerHTML = ''
-				e.ingredients.forEach(e => {
-					show.el.ctIngredient.innerHTML += e.strIngredient + ', '
+				e.ingredients.forEach((f, i) => {
+					show.el.ctIngredient.innerHTML += f.strIngredient
+					if(i < e.ingredients.length -1){
+						 show.el.ctIngredient.innerHTML += ', '
+					}
 					show.el.ingredients.innerHTML += `
 					<li class="p-3">
-						<img class="ing-icon" src="${e.strThumb}">
-						<span class="ing-name">${e.strIngredient}</span>
-						<span class="ing-measure">${(e.measure == null) ? '' : e.measure}</span>
+						<img class="ing-icon" src="${f.strThumb}">
+						<span class="ing-name">${f.strIngredient}</span>
+						<span class="ing-measure">${(f.measure == null) ? '' : f.measure}</span>
 					</li>
 					`
 				})
-				show.el.ctAlcohol.innerHTML = e.strAlcoholic
+				show.el.ctAlcohol.innerHTML = `
+					<span class="alcoholic">
+						${e.strAlcoholic}
+					</span>
+				`
 
 				show.el.glass.innerHTML = e.strGlass
 				show.el.imgGlass.setAttribute('src', e.strDrinkThumb+'/preview')
