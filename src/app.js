@@ -6,5 +6,6 @@ import main from './script/view/main.js'
 
 import './script/component/app-bar.js'
 import './script/component/search-bar.js'
+import './script/component/cocktail-item.js'
 
 document.addEventListener("DOMContentLoaded", main)

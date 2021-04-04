@@ -68,21 +68,22 @@ const home = {
 					if(i == 0){
 						home.el.jumbotronBg.style.backgroundImage = `url('${e.strDrinkThumb}')`
 					}
+
 					el.innerHTML += `
 						<div class="col-md-3 p-0">
-							<div class="cocktail-item" data-id="${e.idDrink}">
-								<img src="${e.strDrinkThumb}/preview">
-								<div class="backdrop"></div>
-								<h3>${e.strDrink}</h3>
-							</div>
+							<cocktail-item></cocktail-item>
 						</div>
 					`
+					
 				})
-				let cockTailItem = document.querySelectorAll('.cocktail-item')
-				cockTailItem.forEach(e => e.addEventListener('click', () => {
-				    let id = e.getAttribute('data-id')
-				    changePage.method.setPageWithParam('show', {id: id})
-				}))
+				let cockTailItem = document.querySelectorAll('cocktail-item')
+				cockTailItem.forEach((e, i) => {
+					var show = home.data.cocktail[i]
+					e.setCocktail = show
+					e.click = () => {
+						changePage.method.setPageWithParam('show', {id: show.idDrink})
+					}
+				})
 			}
 		},
 	}

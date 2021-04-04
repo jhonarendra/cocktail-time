@@ -8,7 +8,7 @@ class AppBar extends HTMLElement {
 	}
 
 	connectedCallback(){
-		this.render();
+		this.render()
 	}
 
 	set clickBrowse(event){
@@ -117,4 +117,4 @@ class AppBar extends HTMLElement {
 	}
 }
 
-customElements.define('app-bar', AppBar);
+customElements.define('app-bar', AppBar)

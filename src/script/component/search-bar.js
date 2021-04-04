@@ -8,7 +8,7 @@ class SearchBar extends HTMLElement {
 	}
 
 	connectedCallback(){
-		this.render();
+		this.render()
 	}
 
 	set onSubmit(event){
@@ -134,4 +134,4 @@ class SearchBar extends HTMLElement {
 	}
 }
 
-customElements.define('search-bar', SearchBar);
+customElements.define('search-bar', SearchBar)
