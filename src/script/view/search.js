@@ -190,7 +190,7 @@ const search = {
 	    			})
 	    			let cockTailItem = document.querySelectorAll('cocktail-item')
 	    			cockTailItem.forEach((e, i) => {
-	    				var show = search.data.cocktail[i]
+	    				let show = search.data.cocktail[i]
 	    				e.setCocktail = show
 	    				e.click = () => {
 	    					changePage.method.setPageWithParam('show', {id: show.idDrink})

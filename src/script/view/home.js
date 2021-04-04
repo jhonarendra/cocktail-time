@@ -42,7 +42,7 @@ const home = {
 				e.setValue = ''
 				e.onSubmit = f => {
 					f.preventDefault()
-					let key = e.getValue
+					const key = e.getValue
 					changePage.method.setPageWithParam('search', {search: key})
 				}
 			})
@@ -65,7 +65,7 @@ const home = {
 			`
 			if(home.data.cocktail.length > 0){
 				home.data.cocktail.forEach((e, i) => {
-					if(i == 0){
+					if(i === 0){
 						home.el.jumbotronBg.style.backgroundImage = `url('${e.strDrinkThumb}')`
 					}
 
@@ -78,7 +78,7 @@ const home = {
 				})
 				let cockTailItem = document.querySelectorAll('cocktail-item')
 				cockTailItem.forEach((e, i) => {
-					var show = home.data.cocktail[i]
+					let show = home.data.cocktail[i]
 					e.setCocktail = show
 					e.click = () => {
 						changePage.method.setPageWithParam('show', {id: show.idDrink})

@@ -61,7 +61,7 @@ const show = {
 
 
 				show.el.bgImage.style.backgroundImage = `url('${e.strDrinkThumb}')`
-				show.el.ctHeaderIcon.setAttribute('src', e.strDrinkThumb+'/preview')
+				show.el.ctHeaderIcon.setAttribute('src', `${e.strDrinkThumb}/preview`)
 
 				show.el.ctName.innerHTML = e.strDrink
 				show.el.ctCategory.innerHTML = e.strCategory
@@ -70,13 +70,13 @@ const show = {
 				e.ingredients.forEach((f, i) => {
 					show.el.ctIngredient.innerHTML += f.strIngredient
 					if(i < e.ingredients.length -1){
-						 show.el.ctIngredient.innerHTML += ', '
+						 show.el.ctIngredient.innerHTML += `, `
 					}
 					show.el.ingredients.innerHTML += `
 					<li class="p-3">
 						<img class="ing-icon" src="${f.strThumb}">
 						<span class="ing-name">${f.strIngredient}</span>
-						<span class="ing-measure">${(f.measure == null) ? '' : f.measure}</span>
+						<span class="ing-measure">${(f.measure === null) ? '' : f.measure}</span>
 					</li>
 					`
 				})
@@ -87,7 +87,7 @@ const show = {
 				`
 
 				show.el.glass.innerHTML = e.strGlass
-				show.el.imgGlass.setAttribute('src', e.strDrinkThumb+'/preview')
+				show.el.imgGlass.setAttribute('src', `${e.strDrinkThumb}/preview`)
 				show.el.instruction.innerHTML = e.strInstructions
 			} catch(err) {
 				console.log(err)
