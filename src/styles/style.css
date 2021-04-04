@@ -141,6 +141,7 @@ svg.svg-ct-gold{
 	list-style: none;
 	text-align: center;
 	margin:0;
+	padding:0;
 }
 #nav-bar li {
 	display: inline-block;
@@ -205,6 +206,14 @@ svg.svg-ct-gold{
 }
 #try h3.section-title {
 	text-align: left;
+}
+@media (max-width: 768px){
+	.try-icon {
+		transform: scale(7);
+	}
+	.try-icon-area {
+		text-align: center;
+	}
 }
 
 /* search-bar */
@@ -360,6 +369,11 @@ ul.ing-list {
 .ing-name {
 	font-weight: bold
 }
+@media (max-width: 992px){
+	h1#ct-name{
+		font-size: 1.75rem
+	}
+}
 
 /* intro */
 #intro .img-icon {
@@ -367,6 +381,15 @@ ul.ing-list {
 }
 .intro-content h3.section-title{
 	text-align: left;
+}
+
+@media (max-width: 768px){
+	#intro .img-icon {
+		text-align: center;
+	}
+	.intro-content h3.section-title{
+		text-align: left;
+	}
 }
 
 /* footer */

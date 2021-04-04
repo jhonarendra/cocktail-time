@@ -36,19 +36,16 @@ const changePage = {
     		    case 'home':
                     app.innerHTML = home.html
                     home.method.prop(params)
-                    home.method.mounted()
     		        break
 
     		    case 'search':
     		        app.innerHTML = search.html
                     search.method.prop(params)
-    		        search.method.mounted()
     		        break
     		    
     		    case 'show':
 	    		    app.innerHTML = show.html
 	    		    show.method.prop(params)
-	    		    show.method.mounted()
     		        break
 
     		    default:

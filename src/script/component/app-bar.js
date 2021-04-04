@@ -42,6 +42,9 @@ class AppBar extends HTMLElement {
 				.bg-ct-dark {
 					background: #343434;
 				}
+				h1 {
+					font-family: 'Lobster Regular';
+				}
 				.cursor-pointer {
 					cursor: pointer;
 				}

@@ -50,7 +50,6 @@ const search = {
 	    	search.method.mounted()
 	    },
 	    trigger: () => {
-
 	    	search.el.appBar = document.querySelector("app-bar")
 	    	search.el.searchBar = document.querySelector("search-bar")
 	    	search.el.filterDetail = document.querySelector(".filter-detail"),
@@ -156,10 +155,6 @@ const search = {
 	        		search.method.resetSearch()
 
 	        	}
-	        	
-	        	
-	        	// filter data
-
 	        }
 	        if(search.data.toggleFilter){
 	            search.data.toggleFilter = false

@@ -32,6 +32,7 @@ const show = {
 		},
 		prop: param => {
 			show.prop.id = param.id
+			show.method.mounted()
 		},
 		trigger: () => {
 			show.el.bgImage = document.querySelector('.bg-image')
