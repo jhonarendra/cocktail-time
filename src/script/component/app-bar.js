@@ -1,3 +1,5 @@
+import logoImg from '../../img/logo.png'
+
 class AppBar extends HTMLElement {
 
 	constructor(){
@@ -104,7 +106,7 @@ class AppBar extends HTMLElement {
 			<div id="app-bar" class="bg-ct-dark cursor-pointer">
 				<div class="container">
 					<div class="brand">
-						<img src="/src/img/logo.png"> <h1>Cocktail Time</h1>
+						<img src="${logoImg}"> <h1>Cocktail Time</h1>
 					</div>
 					<div class="menu">
 						<a class="cursor-pointer btn-browse">Browse</a>

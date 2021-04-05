@@ -118,7 +118,7 @@ class Api {
                     res.forEach((e, i) => {
                         let ing = e.ingredients[0]
                         ing.measure = data['strMeasure'+parseInt(i+1)]
-                        ing.strThumb = 'https://www.thecocktaildb.com/images/ingredients/'+data['strIngredient'+parseInt(i+1)]+'-Small.png'
+                        ing.strThumb = `https://www.thecocktaildb.com/images/ingredients/${data['strIngredient'+parseInt(i+1)]}-Small.png`
                         ingredients.push(ing)
                     })
 

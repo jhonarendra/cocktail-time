@@ -2,6 +2,8 @@ import showView from './show.html'
 import Api from '../data/api.js'
 import changePage from './changePage.js'
 
+import noImg from '../../img/sample/noimage.jpg'
+
 const show = {
 	html: showView,
 	data: {
@@ -14,6 +16,7 @@ const show = {
 	el: {
 		bgImage: '',
 		ctHeaderIcon: '',
+		ingIcon: '',
 		btnBackHeader: '',
 		ctName: '',
 		ctCategory: '',
@@ -38,6 +41,7 @@ const show = {
 		trigger: () => {
 			show.el.bgImage = document.querySelector('.bg-image')
 			show.el.ctHeaderIcon = document.querySelector('.ct-header-icon')
+			show.el.ingIcon = document.querySelectorAll('.ing-icon')
 			show.el.btnBackHeader = document.querySelector('#btn-back-header')
 			show.el.ctName = document.querySelector('#ct-name')
 			show.el.ctCategory = document.querySelector('#ct-category')
@@ -51,11 +55,14 @@ const show = {
 			show.el.btnBackHeader.addEventListener('click', () => {
 				changePage.method.setPage('search')
 			})
+			show.el.bgImage.style.backgroundImage = `url(${noImg})`
+			show.el.ctHeaderIcon.setAttribute('src', noImg)
+			show.el.ingIcon.forEach(e => e.setAttribute('src', noImg))
+			show.el.imgGlass.setAttribute('src', noImg)
 		},
 		showData: async() => {
 			try{
 				let data = await Api.show(show.data.id)
-				console.log(data)
 				show.data.show = data
 				let e = show.data.show
 

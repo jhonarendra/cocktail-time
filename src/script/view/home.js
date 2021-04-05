@@ -2,6 +2,9 @@ import homeView from './home.html'
 import Api from '../data/api.js'
 import changePage from './changePage.js'
 
+import noImg from '../../img/sample/noimage.jpg'
+import mockupImg from '../../img/mockup/mobile.png'
+
 const home = {
 	html: homeView,
 	data: {
@@ -15,7 +18,8 @@ const home = {
 		appBar: '',
 		searchBar: '',
 		jumbotronBg: '',
-		sampleContent: ''
+		sampleContent: '',
+		imgMockup: ''
 	},
 	method: {
 		mounted: () => {
@@ -30,6 +34,7 @@ const home = {
 			home.el.searchBar = document.querySelectorAll('search-bar')
 			home.el.jumbotronBg = document.querySelector('.j-bg-image')
 			home.el.sampleContent = document.querySelector('#sample-content')
+			home.el.imgMockup = document.querySelector('#img-mockup')
 
 			home.el.appBar.clickBrand = () => {
 				changePage.method.setPage('home')
@@ -38,6 +43,7 @@ const home = {
 			home.el.appBar.clickBrowse = () => {
 				changePage.method.setPage('search')
 			}
+			home.el.jumbotronBg.style.backgroundImage = `url(${noImg})`
 			home.el.searchBar.forEach(e => {
 				e.setValue = ''
 				e.onSubmit = f => {
@@ -46,6 +52,8 @@ const home = {
 					changePage.method.setPageWithParam('search', {search: key})
 				}
 			})
+
+			home.el.imgMockup.setAttribute('src', mockupImg)
 		},
 		getSample: async() => {
 			try {

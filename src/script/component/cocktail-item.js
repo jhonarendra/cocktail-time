@@ -1,3 +1,5 @@
+import noImg from '../../img/sample/noimage.jpg'
+
 class CocktailItem extends HTMLElement {
 
 	constructor(){
@@ -84,7 +86,7 @@ class CocktailItem extends HTMLElement {
 				
 			</style>
 			<div class="cocktail-item" data-id="${((this._cocktail) ? this._cocktail.idDrink : '')}">
-				<img src="${(this._cocktail) ? this._cocktail.strDrinkThumb+'/preview' : '/src/img/sample/noimage.jpg'}">
+				<img src="${(this._cocktail) ? this._cocktail.strDrinkThumb+'/preview' : noImg}">
 				<div class="backdrop"></div>
 				<h3>${(this._cocktail) ? this._cocktail.strDrink : '...'}</h3>
 			</div>

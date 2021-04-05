@@ -133,7 +133,7 @@ const search = {
 	        	}
 	        } else if(isSearch || isFilter){
 	        	if(isSearch){
-	        		search.el.titleCocktailArea.innerHTML = 'Result From Keyword "'+search.data.search+'" '
+	        		search.el.titleCocktailArea.innerHTML = `Result From Keyword "${search.data.search}"`
 	        		try {
 	        			let data = await Api.search(search.data.search)
 	        			search.data.cocktail = data
