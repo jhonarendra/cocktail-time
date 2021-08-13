@@ -64,7 +64,7 @@ const home = {
 			}
 		},
 		renderCocktailItem: () => {
-			let el = home.el.sampleContent
+			const el = home.el.sampleContent
 			el.innerHTML = `
 				<div class="sample-info col-md-6 bg-ct-gold">
 					<h3 class="section-title">Various Types of Cocktail!</h3>
@@ -84,9 +84,10 @@ const home = {
 					`
 					
 				})
-				let cockTailItem = document.querySelectorAll('cocktail-item')
+				const cockTailItem = document.querySelectorAll('cocktail-item')
+				let show = ''
 				cockTailItem.forEach((e, i) => {
-					let show = home.data.cocktail[i]
+					show = home.data.cocktail[i]
 					e.setCocktail = show
 					e.click = () => {
 						changePage.method.setPageWithParam('show', {id: show.idDrink})

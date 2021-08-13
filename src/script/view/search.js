@@ -134,8 +134,9 @@ const search = {
 	        } else if(isSearch || isFilter){
 	        	if(isSearch){
 	        		search.el.titleCocktailArea.innerHTML = `Result From Keyword "${search.data.search}"`
+					let data = ''
 	        		try {
-	        			let data = await Api.search(search.data.search)
+	        			data = await Api.search(search.data.search)
 	        			search.data.cocktail = data
 	        			search.method.renderCocktailItem()
 	        		} catch(err) {
@@ -145,8 +146,9 @@ const search = {
 	        		search.method.resetFilter()
 	        	} else if(isFilter){
 	        		search.el.titleCocktailArea.innerHTML = 'Result From Filter'
+					let data = ''
 	        		try {
-	        			let data = await Api.filter(search.data.filter)
+	        			data = await Api.filter(search.data.filter)
 	        			search.data.cocktail = data
 	        			search.method.renderCocktailItem()
 	        		} catch(err) {
@@ -177,7 +179,7 @@ const search = {
 	    	search.method.renderFilterAlcohol()
 	    },
 	    renderCocktailItem: () => {
-	    	let el = search.el.cockTailItemArea
+	    	const el = search.el.cockTailItemArea
 	    	el.innerHTML = ''
 	    	if(search.data.cocktail){
 	    		if(search.data.cocktail.length > 0){
@@ -188,9 +190,10 @@ const search = {
 	    					</div>
 	    				`
 	    			})
-	    			let cockTailItem = document.querySelectorAll('cocktail-item')
+	    			const cockTailItem = document.querySelectorAll('cocktail-item')
+					let show = ''
 	    			cockTailItem.forEach((e, i) => {
-	    				let show = search.data.cocktail[i]
+	    				show = search.data.cocktail[i]
 	    				e.setCocktail = show
 	    				e.click = () => {
 	    					changePage.method.setPageWithParam('show', {id: show.idDrink})
@@ -206,41 +209,45 @@ const search = {
 
 	    },
 	    setFilterCategory: (cat, act) => {
+			let index = 0
 	        if(act === 'add'){
 	        	search.data.filter.category = []
 	            search.data.filter.category.push(cat)
 	        } else if(act === 'remove'){
-	            let index = search.data.filter.category.indexOf(cat)
+	            index = search.data.filter.category.indexOf(cat)
 	            search.data.filter.category.splice(index, 1)
 	        }
 	        search.method.renderFilter()
 	    },
 	    setFilterIngredients: (cat, act) => {
+			let index = 0
 	        if(act === 'add'){
 	        	search.data.filter.ingredients = []
 	            search.data.filter.ingredients.push(cat)
 	        } else if(act === 'remove'){
-	            let index = search.data.filter.ingredients.indexOf(cat)
+	            index = search.data.filter.ingredients.indexOf(cat)
 	            search.data.filter.ingredients.splice(index, 1)
 	        }
 	        search.method.renderFilter()
 	    },
 	    setFilterGlass: (cat, act) => {
+			let index = 0
 	        if(act === 'add'){
 	        	search.data.filter.glass = []
 	            search.data.filter.glass.push(cat)
 	        } else if(act === 'remove'){
-	            let index = search.data.filter.glass.indexOf(cat)
+	            index = search.data.filter.glass.indexOf(cat)
 	            search.data.filter.glass.splice(index, 1)
 	        }
 	        search.method.renderFilter()
 	    },
 	    setFilterAlcohol: (cat, act) => {
+			let index = 0
 	        if(act === 'add'){
 	        	search.data.filter.alcohol = []
 	            search.data.filter.alcohol.push(cat)
 	        } else if(act === 'remove'){
-	            let index = search.data.filter.alcohol.indexOf(cat)
+	            index = search.data.filter.alcohol.indexOf(cat)
 	            search.data.filter.alcohol.splice(index, 1)
 	        }
 	        search.method.renderFilter()
@@ -248,19 +255,19 @@ const search = {
 	    renderFilter: async() => {
 	    	if(!search.data.isFilterLoaded){
 	    		try {
-	    			let data1 = await Api.getCategory()
+	    			const data1 = await Api.getCategory()
 	    			data1.forEach(e => {
 	    				search.data.category.push(e.strCategory)
 	    			})
-	    			let data2 = await Api.getGlass()
+	    			const data2 = await Api.getGlass()
 	    			data2.forEach(e => {
 	    				search.data.glass.push(e.strGlass)
 	    			})
-	    			let data3 = await Api.getIngredients()
+	    			const data3 = await Api.getIngredients()
 	    			data3.forEach(e => {
 	    				search.data.ingredients.push(e.strIngredient1)
 	    			})
-	    			let data4 = await Api.getAlcoholic()
+	    			const data4 = await Api.getAlcoholic()
 	    			data4.forEach(e => {
 	    				search.data.alcohol.push(e.strAlcoholic)
 	    			})
@@ -277,7 +284,7 @@ const search = {
 	        
 	    },
 	    renderFilterActive: () => {
-	        let f = search.data.filter
+	        const f = search.data.filter
 	        // category
 	        if(f.category.length > 0){
 	            search.el.filterCategoryActive.innerHTML = ``
@@ -291,11 +298,12 @@ const search = {
 	                <span class="filter-item filter-category-item" data-id="">Category <svg class="chevron-down"><path></path></svg></span>
 	            `
 	        }
-	        let filterCategoryItem = document.querySelectorAll('.filter-category-item')
+	        const filterCategoryItem = document.querySelectorAll('.filter-category-item')
+			let idCat = ''
 	        filterCategoryItem.forEach(e => e.addEventListener('click', () => {
-	            let id = e.getAttribute('data-id')
-	            if(id !== ''){
-	                search.method.setFilterCategory(id, 'remove')
+	            idCat = e.getAttribute('data-id')
+	            if(idCat !== ''){
+	                search.method.setFilterCategory(idCat, 'remove')
 	            } else {
 	                search.method.toggleFilter()
 	            }
@@ -313,11 +321,12 @@ const search = {
 	                <span class="filter-item filter-ingredients-item" data-id="">Ingredients <svg class="chevron-down"><path></path></svg></span>
 	            `
 	        }
-	        let filterIngredientsItem = document.querySelectorAll('.filter-ingredients-item')
+	        const filterIngredientsItem = document.querySelectorAll('.filter-ingredients-item')
+			let idIng = ''
 	        filterIngredientsItem.forEach(e => e.addEventListener('click', () => {
-	            let id = e.getAttribute('data-id')
-	            if(id !== ''){
-	                search.method.setFilterIngredients(id, 'remove')
+	            idIng = e.getAttribute('data-id')
+	            if(idIng !== ''){
+	                search.method.setFilterIngredients(idIng, 'remove')
 	            } else {
 	                search.method.toggleFilter()
 	            }
@@ -335,11 +344,12 @@ const search = {
 	                <span class="filter-item filter-glass-item" data-id="">Glass <svg class="chevron-down"><path></path></svg></span>
 	            `
 	        }
-	        let filterGlassItem = document.querySelectorAll('.filter-glass-item')
+	        const filterGlassItem = document.querySelectorAll('.filter-glass-item')
+			let idGlass = ''
 	        filterGlassItem.forEach(e => e.addEventListener('click', () => {
-	            let id = e.getAttribute('data-id')
-	            if(id !== ''){
-	                search.method.setFilterGlass(id, 'remove')
+	            idGlass = e.getAttribute('data-id')
+	            if(idGlass !== ''){
+	                search.method.setFilterGlass(idGlass, 'remove')
 	            } else {
 	                search.method.toggleFilter()
 	            }
@@ -357,11 +367,12 @@ const search = {
 	                <span class="filter-item filter-alcohol-item" data-id="">Alcohol <svg class="chevron-down"><path></path></svg></span>
 	            `
 	        }
-	        let filterAlcoholItem = document.querySelectorAll('.filter-alcohol-item')
+	        const filterAlcoholItem = document.querySelectorAll('.filter-alcohol-item')
+			let idAlc = ''
 	        filterAlcoholItem.forEach(e => e.addEventListener('click', () => {
-	            let id = e.getAttribute('data-id')
-	            if(id !== ''){
-	                search.method.setFilterAlcohol(id, 'remove')
+	            idAlc = e.getAttribute('data-id')
+	            if(idAlc !== ''){
+	                search.method.setFilterAlcohol(idAlc, 'remove')
 	            } else {
 	                search.method.toggleFilter()
 	            }
@@ -376,13 +387,14 @@ const search = {
 	                </li>
 	            `
 	        })
-	        let cbFilterCategory = document.querySelectorAll('.li-filter-category')
+	        const cbFilterCategory = document.querySelectorAll('.li-filter-category')
+			let idCat = ''
 	        cbFilterCategory.forEach(e => e.addEventListener('click', () => {
-	            let id = e.getAttribute('data-id')
-	            if(search.data.filter.category.includes(id)){
-	                search.method.setFilterCategory(id, 'remove')
+	            idCat = e.getAttribute('data-id')
+	            if(search.data.filter.category.includes(idCat)){
+	                search.method.setFilterCategory(idCat, 'remove')
 	            } else {
-	                search.method.setFilterCategory(id, 'add')
+	                search.method.setFilterCategory(idCat, 'add')
 	            }
 	            
 	        }))
@@ -396,13 +408,14 @@ const search = {
 	                </li>
 	            `
 	        })
-	        let cbFilterIngredients = document.querySelectorAll('.li-filter-ingredients')
+	        const cbFilterIngredients = document.querySelectorAll('.li-filter-ingredients')
+			let idIng = ''
 	        cbFilterIngredients.forEach(e => e.addEventListener('click', () => {
-	            let id = e.getAttribute('data-id')
-	            if(search.data.filter.ingredients.includes(id)){
-	                search.method.setFilterIngredients(id, 'remove')
+	            idIng = e.getAttribute('data-id')
+	            if(search.data.filter.ingredients.includes(idIng)){
+	                search.method.setFilterIngredients(idIng, 'remove')
 	            } else {
-	                search.method.setFilterIngredients(id, 'add')
+	                search.method.setFilterIngredients(idIng, 'add')
 	            }
 	        }))
 	    },
@@ -415,13 +428,14 @@ const search = {
 	                </li>
 	            `
 	        })
-	        let cbFilterGlass = document.querySelectorAll('.li-filter-glass')
+	        const cbFilterGlass = document.querySelectorAll('.li-filter-glass')
+			let idGlass = ''
 	        cbFilterGlass.forEach(e => e.addEventListener('click', () => {
-	            let id = e.getAttribute('data-id')
-	            if(search.data.filter.glass.includes(id)){
-	                search.method.setFilterGlass(id, 'remove')
+	            idGlass = e.getAttribute('data-id')
+	            if(search.data.filter.glass.includes(idGlass)){
+	                search.method.setFilterGlass(idGlass, 'remove')
 	            } else {
-	                search.method.setFilterGlass(id, 'add')
+	                search.method.setFilterGlass(idGlass, 'add')
 	            }
 	        }))
 	    },
@@ -434,13 +448,14 @@ const search = {
 	                </li>
 	            `
 	        })
-	        let cbFilterAlcohol = document.querySelectorAll('.li-filter-alcohol')
+	        const cbFilterAlcohol = document.querySelectorAll('.li-filter-alcohol')
+			let idAlc = ''
 	        cbFilterAlcohol.forEach(e => e.addEventListener('click', () => {
-	            let id = e.getAttribute('data-id')
-	            if(search.data.filter.alcohol.includes(id)){
-	                search.method.setFilterAlcohol(id, 'remove')
+	            idAlc = e.getAttribute('data-id')
+	            if(search.data.filter.alcohol.includes(idAlc)){
+	                search.method.setFilterAlcohol(idAlc, 'remove')
 	            } else {
-	                search.method.setFilterAlcohol(id, 'add')
+	                search.method.setFilterAlcohol(idAlc, 'add')
 	            }
 	        }))
 	    }
