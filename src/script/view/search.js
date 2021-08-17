@@ -448,6 +448,7 @@ const search = {
 	                </li>
 	            `
 	        })
+			
 	        const cbFilterAlcohol = document.querySelectorAll('.li-filter-alcohol')
 			let idAlc = ''
 	        cbFilterAlcohol.forEach(e => e.addEventListener('click', () => {
